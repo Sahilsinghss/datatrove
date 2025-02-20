@@ -23,12 +23,46 @@ variable "instance_name" {
   type        = string
 }
 
-variable "role_name" {
+variable "ec2_role_name" {
   description = "Name of the IAm role"
   type        = string
 }
 
-variable "policy_arns" {
+variable "glue_role_name" {
+  description = "Name of the IAm role"
+  type        = string
+}
+
+variable "ec2_policy_arns" {
   description = "List of IAM policy ARNs to attach"
   type = list(string)
+}
+
+variable "glue_policy_arns" {
+  description = "List of IAM policy ARNs to attach"
+  type = list(string)
+}
+
+variable "root_volume_size" {
+  description = "Root volume size for the instance"
+  type        = number
+}
+
+variable "databases" {
+  description = "List of Glue databases to be created"
+  type        = list(string)
+}
+
+variable "crawlers" {
+  description = "List of Glue crawlers"
+  type = list(object({
+    name          = string
+    database_name = string
+    s3_target     = string
+  }))
+}
+
+variable "folder_names" {
+  description = "List of folder names to create inside the bucket"
+  type        = list(string)
 }

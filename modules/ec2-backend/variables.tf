@@ -22,3 +22,8 @@ variable "iam_instance_profile" {
   description = "The IAM instance profile name"
   type        = string
 }
+
+variable "root_volume_size" {
+  description = "Root volume size for the instance"
+  type        = number
+}

@@ -3,6 +3,10 @@ resource "aws_instance" "nginx_instance" {
   instance_type = var.instance_type
   key_name = var.key_name
   iam_instance_profile = var.iam_instance_profile
+  root_block_device {
+    volume_size = var.root_volume_size
+    volume_type = "gp3"
+  }
   user_data = <<-EOF
             #!/bin/bash
             sudo yum update -y

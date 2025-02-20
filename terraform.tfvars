@@ -1,10 +1,12 @@
-bucket_name = "test-terraform-import-1122"
+bucket_name = "datatroveai-database-talktodb-1122"
 instance_name = "test"
 key_name = "test-1"
-instance_type = "t2.micro"
+instance_type = "t3.medium"
 ami_id = "ami-04b4f1a9cf54c11d0"
-role_name = "Datatrove_ec2_role"
-policy_arns = [
+ec2_role_name = "Datatrove_ec2_role"
+glue_role_name = "Glue_crawler_role"
+root_volume_size = "20"
+ec2_policy_arns = [
   "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
   "arn:aws:iam::aws:policy/AWSGlueSchemaRegistryReadonlyAccess",
   "arn:aws:iam::aws:policy/AWSGlueSchemaRegistryFullAccess",
@@ -13,3 +15,32 @@ policy_arns = [
   "arn:aws:iam::aws:policy/AmazonAthenaFullAccess",
   "arn:aws:iam::aws:policy/service-role/AmazonDataZoneGlueManageAccessRolePolicy"
 ]
+
+glue_policy_arns = [
+  "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+  "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
+  "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess",
+  "arn:aws:iam::aws:policy/AmazonAthenaFullAccess"
+]
+
+databases = ["default", "datatroveai-db", "datatroveai_healthcare"]
+
+crawlers = [
+    {
+      name         = "table-extract-crawler"
+      database_name = "datatroveai-db"
+      s3_target    = "s3://datatroveai-database-talktodb/data1"
+    },
+    {
+      name         = "TestCrawler"
+      database_name = "datatroveai_healthcare"
+      s3_target    = "s3://datatroveai-database-talktodb/data2"
+    },
+    {
+      name         = "t_gpt_machine_data"
+      database_name = "datatroveai-db"
+      s3_target    = "s3://datatroveai-database-talktodb/data3"
+    }
+  ]
+
+folder_names   = ["data1", "data2", "data3"]
