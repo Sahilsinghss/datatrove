@@ -3,16 +3,28 @@ provider "aws" {
   profile = "serviceprofile"
 }
 
-module "ec2_instance" {
+module "nginx_ec2_instance" {
   source = "./modules/ec2-backend"
 
   ami_id = var.ami_id
-  instance_type = var.instance_type
+  backend_instance_type = var.backend_instance_type
   key_name = var.key_name
-  instance_name = var.instance_name
+  backend_instance_name = var.backend_instance_name
   iam_instance_profile = module.iam.iam_instance_profile_name
   root_volume_size = var.root_volume_size
   depends_on = [module.iam]
+}
+
+module "db_ec2_instance" {
+  source = "./modules/ec2-database"
+
+  ami_id = var.ami_id
+  db_instance_type = var.db_instance_type
+  db_instance_name = var.db_instance_name
+  key_name = var.key_name
+  iam_instance_profile = module.iam.iam_instance_profile_name
+  root_volume_size = var.root_volume_size
+  depends_on = [ module.iam ]
 }
 
 module "s3" {

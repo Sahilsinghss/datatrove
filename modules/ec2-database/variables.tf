@@ -3,7 +3,7 @@ variable "ami_id" {
   type        = string
 }
 
-variable "backend_instance_type" {
+variable "db_instance_type" {
   description = "Name of the existing instance type of instance"
   type        = string
 }
@@ -13,8 +13,8 @@ variable "key_name" {
   type        = string
 }
 
-variable "backend_instance_name" {
-  description = "Name of the existing instace name of instance"
+variable "db_instance_name" {
+  description = "Name of the existing =instace name of instance"
   type        = string
 }
 

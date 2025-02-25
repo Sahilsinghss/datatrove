@@ -1,6 +1,6 @@
 resource "aws_instance" "nginx_instance" {
   ami = var.ami_id
-  instance_type = var.instance_type
+  instance_type = var.backend_instance_type
   key_name = var.key_name
   iam_instance_profile = var.iam_instance_profile
   root_block_device {

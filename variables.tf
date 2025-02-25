@@ -8,7 +8,7 @@ variable "ami_id" {
   type        = string
 }
 
-variable "instance_type" {
+variable "backend_instance_type" {
   description = "Name of the existing instance type of instance"
   type        = string
 }
@@ -18,7 +18,7 @@ variable "key_name" {
   type        = string
 }
 
-variable "instance_name" {
+variable "backend_instance_name" {
   description = "Name of the existing =instace name of instance"
   type        = string
 }
@@ -65,4 +65,14 @@ variable "crawlers" {
 variable "folder_names" {
   description = "List of folder names to create inside the bucket"
   type        = list(string)
+}
+
+variable "db_instance_type" {
+  description = "Name of the existing instance type of instance"
+  type        = string
+}
+
+variable "db_instance_name" {
+  description = "Name of the existing =instace name of instance"
+  type        = string
 }
